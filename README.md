@@ -1,2 +1,5 @@
 # learning_sys_admin
-All system &amp; network administration project realized throughout my school curriculum.
+
+This repo contains different project I used to make during my past years in school. They are all related to system, network or cloud administration, with a bit of dev to make more interesting things.
+
+TODO: documentation, push other projects.
