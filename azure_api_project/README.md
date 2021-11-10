@@ -6,11 +6,11 @@
   - [Web](#web)
   - [App](#app)
 
-This project runs two different smaller projects to provide a more interesting project. The main goal is to count peoples on an image, and if there is too many people on it, play a a text message on speakers.
+Made up of two different smaller projects to provide a more interesting one, its aim is to count peoples on an image, and if there is too many people on it, play a text message on speakers.
 
 I have therefore divided this project into two parts : 
-- The first one will generate TTS and configuration files for future usage
-- The second one will analize an image and play, or not, the previously generated TTS files.
+- The first one will generate TTS and configuration files for future usage. (see [web](web))
+- The second one will analize an image and play, or not, the previously generated TTS files. (see [app](app))
 
 ## Before launching this project
 
