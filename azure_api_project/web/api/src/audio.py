@@ -17,9 +17,9 @@ def get_keys_from_env(service):
         speech_region = os.getenv("AZ_SPEECH_REGION")
 
         if not speech_key:
-            speech_key = "92cad92d91f747cfb642ac69630fa418"
+            speech_key = "<YOUR_SUBSCRIPTION_KEY>"
         if not speech_region:
-            speech_region = "westeurope"
+            speech_region = "<YOUR_REGION>"
 
         speech_info = {
             "key": speech_key,
@@ -31,9 +31,9 @@ def get_keys_from_env(service):
         translate_region = os.getenv("AZ_TRANSLATE_REGION")
 
         if not translate_key:
-            translate_key = "e9ff8d54ca1f4615a8437258464b9057"
+            translate_key = "<YOUR_SUBSCRIPTION_KEY>"
         if not translate_region:
-            translate_region = "westeurope"
+            translate_region = "<YOUR_REGION>"
 
         translate_info = {
             "key": translate_key,
