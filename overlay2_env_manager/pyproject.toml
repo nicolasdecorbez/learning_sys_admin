@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "box"
+version = "0.0.1"
+description = "Env manager to manage applications with virtual env"
+authors = ["nikko-regolith <decorb_n@etna-alternance.net>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+argparse = "^1.4.0"
+PyYAML = "^5.4.1"
+pylint = "^2.11.1"
+shutils = "^0.1.0"
+requests = "^2.26.0"
+tabulate = "^0.8.9"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+box = "box.main:start_box"

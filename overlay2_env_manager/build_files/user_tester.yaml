@@ -1,0 +1,4 @@
+---
+name: user-tester
+user: toto
+run: whoami

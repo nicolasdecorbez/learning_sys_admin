@@ -1,0 +1,9 @@
+---
+name: mongodb
+repositories:
+ - key: https://www.mongodb.org/static/pgp/server-4.4.asc
+   repository: "deb http://repo.mongodb.org/apt/debian buster/mongodb-org/4.4 main"
+requirements:
+ - mongodb-org
+run: |
+ mongod $ARGS
