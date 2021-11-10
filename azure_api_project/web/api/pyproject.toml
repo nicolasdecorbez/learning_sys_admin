@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "src"
+version = "0.1.0"
+description = "Basic API to retrieve data about social distancing restrictions and a message to convert into TTS"
+
+authors = ["decorb_n <decorb_n@etna-alternance.net>"]
+
+readme = "../README.md"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+sanic = "^21.3.4"
+PyYAML = "^5.4.1"
+azure-cognitiveservices-speech = "^1.17.0"
+requests = "^2.25.1"
+uuid = "^1.30"
+pylint = "^2.8.3"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+start-api = "src.server:launch_api"

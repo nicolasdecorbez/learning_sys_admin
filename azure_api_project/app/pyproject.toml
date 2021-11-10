@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "src"
+version = "0.1.0"
+description = "CLI program to play TTS files if social-distancing is not respected"
+
+authors = ["decorb_n <decorb_n@etna-alternance.net>"]
+
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+argparse = "^1.4.0"
+PyYAML = "^5.4.1"
+azure-cognitiveservices-vision-computervision = "^0.9.0"
+Pillow = "^8.2.0"
+playsound = "^1.2.2"
+vext = "^0.7.6"
+"vext.gi" = "^0.7.4"
+pylint = "^2.8.3"
+
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+social-distancing = "src.read_input:read_input"

@@ -1,0 +1,27 @@
+---
+version: "3"
+
+services:
+
+  api:
+    build: ./api
+    environment:
+      YAML_CONFIG_PATH: "/Ressources/Configuration/configuration.yml"
+      TTS_PATH: "/Ressources/Audio/"
+      FRENCH_TTS_NAME: "french_tts_message.wav"
+      ENGLISH_TTS_NAME: "english_tts_message.wav"
+      AZ_SPEECH_KEY: "<YOUR_SUBSCRIPTION_KEY>"
+      AZ_SPEECH_REGION: "<YOUR_REGION>"
+      AZ_TRANSLATE_KEY: "<YOUR_SUBSCRIPTION_KEY>"
+      AZ_TRANSLATE_REGION: "<YOUR_REGION>"
+    restart: on-failure
+    ports:
+      - "8000:8000"
+    volumes:
+      - "../assets:/Ressources"
+
+  web:
+    build: ./website
+    ports:
+      - "80:80"
+    restart: on-failure
