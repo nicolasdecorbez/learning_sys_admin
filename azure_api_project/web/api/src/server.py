@@ -17,8 +17,8 @@ app = Sanic("Step1 API")
 class DataFromRequest:
     """Create a list of parameters from previous request."""
 
-    max_allowed: ""
-    message: ""
+    max_allowed: str
+    message: str
 
 
 def store_data(max_allowed, message):
