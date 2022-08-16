@@ -23,13 +23,7 @@ class Parameters:
 def generate_params(max_allowed, image_path, french_audio, english_audio):
     """Format function arguments into a Parameters object."""
 
-    parameters = Parameters(
-        max_allowed,
-        image_path,
-        french_audio,
-        english_audio
-    )
-    return parameters
+    return Parameters(max_allowed, image_path, french_audio, english_audio)
 
 
 def verify_filename(filename, extension):
@@ -44,8 +38,7 @@ def read_max_allowed_yaml(filename):
     with open(filename, 'r') as configuration:
         try:
             result = yaml.safe_load(configuration)
-            max_allowed = result.get("max_allowed")
-            if max_allowed:
+            if max_allowed := result.get("max_allowed"):
                 return max_allowed
             print(f"WARNING: Can't find 'max_allowed' column into '{filename}'.")
             print("> Exiting the program.")

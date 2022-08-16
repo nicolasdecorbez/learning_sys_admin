@@ -17,19 +17,16 @@ def create_yaml_params(max_allowed):
     if isinstance(max_allowed, str):
         max_allowed = int(max_allowed)
 
-    yaml_params = {
-        "max_allowed": max_allowed
-    }
-    return yaml_params
+    return {"max_allowed": max_allowed}
 
 
 def generate_files(request_data):
     """Main function to send corrects arguments to file creation functions."""
 
-    if os.getenv("YAML_CONFIG_PATH"):
-        path = os.getenv("YAML_CONFIG_PATH")
-    else:
-        path = "../../Ressources/Configuration/configuration"
+    path = (
+        os.getenv("YAML_CONFIG_PATH")
+        or "../../Ressources/Configuration/configuration"
+    )
 
     yaml_params = create_yaml_params(request_data.max_allowed)
     generate_yaml(yaml_params, path)
@@ -40,7 +37,7 @@ def generate_yaml(yaml_params, path):
     """Create the YAML configuration file with formated parameters"""
 
     if not path.endswith(".yml") and not path.endswith(".yaml"):
-        path = path + ".yml"
+        path = f"{path}.yml"
     with open(path, "w") as configuration:
         yaml.dump(yaml_params, configuration)
         print(f"API: Successfully created '{path}'")

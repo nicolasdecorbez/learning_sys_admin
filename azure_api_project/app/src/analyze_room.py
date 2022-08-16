@@ -42,11 +42,7 @@ def count_person_from_image(image_path):
 def group_tts(fr_tts, en_tts):
     """Group all TTS files into an object"""
 
-    tts_audios = {
-        "FR": fr_tts,
-        "EN": en_tts
-    }
-    return tts_audios
+    return {"FR": fr_tts, "EN": en_tts}
 
 
 def play_audio(tts_audios):

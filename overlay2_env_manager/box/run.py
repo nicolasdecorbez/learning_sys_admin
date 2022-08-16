@@ -35,22 +35,22 @@ def mount_run(path):
 
   # mount our overlay fs
   mount.overlay_mount(
-    lower = "/var/lib/box/base",
-    upper = path + "/files",
-    work = path + "/buffer",
-    merged = path + "/runtime"
+      lower="/var/lib/box/base",
+      upper=f"{path}/files",
+      work=f"{path}/buffer",
+      merged=f"{path}/runtime",
   )
   # mount proc & sys, create dev...
-  mount.mount_env(path + "/runtime")
+  mount.mount_env(f"{path}/runtime")
 
 
 def umount_run(path):
   """Umount all previously mounted files and dir"""
 
   # mount proc & sys, create dev...
-  mount.umount_env(path + "/runtime")
+  mount.umount_env(f"{path}/runtime")
   # umount overlay
-  os.system("umount -v " + path + "/runtime")
+  os.system(f"umount -v {path}/runtime")
 
 
 def launch_app(env_config: RunParameters, add_args):
@@ -65,12 +65,12 @@ def launch_app(env_config: RunParameters, add_args):
       code = os.WEXITSTATUS(info[1]) 
       if code != 0:
         print(f"{colors.FAIL}ERROR:{colors.ENDC} Run failed with error code : {code}")
-  
+
   else:
     print(f"{colors.OKCYAN}\nLaunching {env_config.name}")
     print(f"––––––––––––––––––––––––––––––––––\n{colors.ENDC}")
     print(colors.WARNING)
-    os.chroot(env_config.path + "/runtime")
+    os.chroot(f"{env_config.path}/runtime")
     os.chdir("/")
 
     if(env_config.user != "root"):
@@ -79,9 +79,9 @@ def launch_app(env_config: RunParameters, add_args):
     if "$ARGS" in env_config.run:
       before_args = env_config.run.index("$ARGS")
       if add_args:
-        os.system(env_config.run[0:before_args] + add_args)
+        os.system(env_config.run[:before_args] + add_args)
       else:
-        os.system(env_config.run[0:before_args])
+        os.system(env_config.run[:before_args])
     else:
       os.system(env_config.run)
 
