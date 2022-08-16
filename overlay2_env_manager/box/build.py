@@ -60,12 +60,12 @@ def start_build(filename):
   env_list = env.read_env_file()
 
   new_node = {
-    "name": config.name,
-    "path": "/var/lib/box/env/" + config.name,
-    "user": config.user,
-    "run": config.run 
+      "name": config.name,
+      "path": f"/var/lib/box/env/{config.name}",
+      "user": config.user,
+      "run": config.run,
   }
-  
+
   if env_list.environments and env.is_env_exist(config.name, env_list):
     env_list = env.delete_env(config.name, env_list)
 

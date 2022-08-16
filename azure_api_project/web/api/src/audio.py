@@ -21,11 +21,8 @@ def get_keys_from_env(service):
         if not speech_region:
             speech_region = "<YOUR_REGION>"
 
-        speech_info = {
-            "key": speech_key,
-            "region": speech_region
-        }
-        return speech_info
+        return {"key": speech_key, "region": speech_region}
+
     elif service == "translate":
         translate_key = os.getenv("AZ_TRANSLATE_KEY")
         translate_region = os.getenv("AZ_TRANSLATE_REGION")
@@ -35,34 +32,28 @@ def get_keys_from_env(service):
         if not translate_region:
             translate_region = "<YOUR_REGION>"
 
-        translate_info = {
-            "key": translate_key,
-            "region": translate_region
-        }
-        return translate_info
+        return {"key": translate_key, "region": translate_region}
+
     return 0
 
 def get_speech_configuration():
     """Create a configuration file for Azure Speech."""
 
     speech_info = get_keys_from_env("speech")
-    speech_config = SpeechConfig(
-        subscription=speech_info.get("key"),
-        region=service_info.get("region")
+    return SpeechConfig(
+        subscription=speech_info.get("key"), region=service_info.get("region")
     )
-    return speech_config
 
 
 def get_translate_configuration():
     """Define few informations to configure Azure Translate."""
 
     translate_info = get_keys_from_env("translate")
-    translate_config = {
+    return {
         "subscription_key": translate_info.get("key"),
         "endpoint": "https://api.cognitive.microsofttranslator.com/translate",
-        "location":  translate_info.get("region")
+        "location": translate_info.get("region"),
     }
-    return translate_config
 
 
 def get_path_from_env():
@@ -81,19 +72,18 @@ def get_path_from_env():
     if not tts_en_name:
         tts_en_name = "english_tts_message.wav"
 
-    path = {
+    return {
         "base": tts_base_path,
         "french": tts_fr_name,
-        "english": tts_en_name
+        "english": tts_en_name,
     }
-    return path
 
 
 def message_synthesizer(language, message, speech_config):
     """Synthesize text into audio message, and save it."""
 
     path = get_path_from_env()
-    if not language == "french":
+    if language != "french":
         message = translate_message(message)
         speech_config.speech_synthesis_voice_name = "en-GB-MiaNeural"
         filename = path.get("base") + path.get("english")
@@ -136,8 +126,7 @@ def translate_message(message):
         json=body
     )
     response = request.json()
-    translated_message = response[0].get("translations")[0].get("text")
-    return translated_message
+    return response[0].get("translations")[0].get("text")
 
 
 def create_audio_files(speech_config, message):

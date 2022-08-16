@@ -24,11 +24,7 @@ class DataFromRequest:
 def store_data(max_allowed, message):
     """Format and store data received."""
 
-    data = DataFromRequest(
-        max_allowed,
-        message
-    )
-    return data
+    return DataFromRequest(max_allowed, message)
 
 
 def launch_api():

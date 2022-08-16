@@ -136,7 +136,7 @@ def get_args():
     if os.path.isdir("/var/lib/box"):
       answer = ""
       message = f"{colors.FAIL}ERROR:{colors.ENDC} box directory already exist.\nRunning setup again will delete all your ressources under this directory.\nWould you like to continue [Y/N]? "
-      
+
       while answer not in ["y", "n"]:
         answer = input(message).lower()
 

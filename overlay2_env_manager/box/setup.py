@@ -1,5 +1,6 @@
 """Check and install the required files for Box execution"""
 
+
 import os
 import stat
 import shutil
@@ -8,12 +9,12 @@ import tarfile
 
 
 cwd = os.getcwd()
-env_file = cwd + "/config_files/env.yaml"
+env_file = f"{cwd}/config_files/env.yaml"
 
 box_dir = "/var/lib/box"
-base_dir = box_dir + "/base"
-env_dir = box_dir + "/env"
-box_env_file = box_dir + "/env.yaml"
+base_dir = f"{box_dir}/base"
+env_dir = f"{box_dir}/env"
+box_env_file = f"{box_dir}/env.yaml"
 
 url = "https://github.com/debuerreotype/docker-debian-artifacts/raw/3503997cf522377bc4e4967c7f0fcbcb18c69fc8/buster/slim/rootfs.tar.xz"
 target_xz = "/var/lib/box/debian.tar.xz"
@@ -22,14 +23,14 @@ target_xz = "/var/lib/box/debian.tar.xz"
 def create_box_dir(dir):
   """Create the base box directory into /var/lib"""
 
-  print("INFO: Creating the directory : " + dir)
+  print(f"INFO: Creating the directory : {dir}")
   os.makedirs(dir)
 
 
 def create_env_file():
   """Create the env. file with all our already built env."""
 
-  print("INFO: Creating the box configuration file : " + box_env_file)
+  print(f"INFO: Creating the box configuration file : {box_env_file}")
   shutil.copyfile(env_file, box_env_file)
 
 
@@ -58,51 +59,51 @@ def populate_dev(directory):
   # Reset our permissions to avoid conflict.
   os.umask(0)
 
-  if not os.path.isfile(directory + "/dev/console"):
+  if not os.path.isfile(f"{directory}/dev/console"):
     os.mknod(
-      path = directory + "/dev/console",
-      mode = 0o620 | stat.S_IFCHR,
-      device = os.makedev(5,1)
+        path=f"{directory}/dev/console",
+        mode=0o620 | stat.S_IFCHR,
+        device=os.makedev(5, 1),
     )
 
-  if not os.path.isfile(directory + "/dev/null"):
+  if not os.path.isfile(f"{directory}/dev/null"):
     os.mknod(
-      path = directory + "/dev/null",
-      mode = 0o666 | stat.S_IFCHR,
-      device = os.makedev(1,3)
+        path=f"{directory}/dev/null",
+        mode=0o666 | stat.S_IFCHR,
+        device=os.makedev(1, 3),
     )
 
-  if not os.path.isfile(directory + "/dev/zero"):
+  if not os.path.isfile(f"{directory}/dev/zero"):
     os.mknod(
-      path = directory + "/dev/zero",
-      mode = 0o666 | stat.S_IFCHR,
-      device = os.makedev(1,5)
+        path=f"{directory}/dev/zero",
+        mode=0o666 | stat.S_IFCHR,
+        device=os.makedev(1, 5),
     )
 
-  if not os.path.isfile(directory + "/dev/tty"):
+  if not os.path.isfile(f"{directory}/dev/tty"):
     os.mknod(
-      path = directory + "/dev/tty",
-      mode = 0o666 | stat.S_IFCHR,
-      device = os.makedev(5,0)
+        path=f"{directory}/dev/tty",
+        mode=0o666 | stat.S_IFCHR,
+        device=os.makedev(5, 0),
     )
 
-  if not os.path.isfile(directory + "/dev/random"):
+  if not os.path.isfile(f"{directory}/dev/random"):
     os.mknod(
-      path = directory + "/dev/random",
-      mode = 0o444 | stat.S_IFCHR,
-      device = os.makedev(1,8)
+        path=f"{directory}/dev/random",
+        mode=0o444 | stat.S_IFCHR,
+        device=os.makedev(1, 8),
     )
 
-  if not os.path.isfile(directory + "/dev/urandom"):
+  if not os.path.isfile(f"{directory}/dev/urandom"):
     os.mknod(
-      path = directory + "/dev/urandom",
-      mode = 0o444 | stat.S_IFCHR,
-      device = os.makedev(1,9)
+        path=f"{directory}/dev/urandom",
+        mode=0o444 | stat.S_IFCHR,
+        device=os.makedev(1, 9),
     )
 
   # Change owner of console & tty files -> root:tty
   for filename in ["console", "tty"]:
-    os.chown(directory + "/dev/" + filename, 0, 5)
+    os.chown(f"{directory}/dev/{filename}", 0, 5)
 
 
 def check_installation():
